@@ -1,6 +1,9 @@
 python-dotenv
 pandas
 numpy
+python-dotenv
+pandas
+numpy
 pymongo
 certifi
 pymongo[srv]
@@ -13,4 +16,4 @@ uvicorn
 python-multipart
 
 
--e .
+##-e .
