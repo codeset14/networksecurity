@@ -7,6 +7,10 @@ from networksecurity.logging.logger import logging
 from networksecurity.entity.artifact_entity import DataTransformationArtifact,ModelTrainerArtifact
 from networksecurity.entity.config_entity import ModelTrainerConfig
 
+from urllib.parse import urlparse
+
+import mlflow.sklearn
+
  
 
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
@@ -53,17 +57,18 @@ class ModelTrainer:
 
             
 
-            mlflow.log_metric("f1_score",f1_score)
-            mlflow.log_metric("precision",precision_score)
-            mlflow.log_metric("recall_score",recall_score)
-            mlflow.sklearn.log_model(best_model,"model")
-            # Model registry does not work with file store
+            mlflow.log_metric("f1_score", classificationmetric.f1_score)
+            mlflow.log_metric("precision", classificationmetric.precision_score)
+            mlflow.log_metric("recall", classificationmetric.recall_score)
+
+            mlflow.sklearn.log_model(
+            sk_model=best_model,
+            artifact_path="model",
+            registered_model_name="NetworkSecurityModel"
+            )
             if tracking_url_type_store != "file":
 
-                # Register the model
-                # There are other ways to use the Model Registry, which depends on the use case,
-                # please refer to the doc for more information:
-                # https://mlflow.org/docs/latest/model-registry.html#api-workflow
+                
                 mlflow.sklearn.log_model(best_model, "model", registered_model_name=best_model)
             else:
                 mlflow.sklearn.log_model(best_model, "model")
@@ -142,12 +147,12 @@ class ModelTrainer:
         
 
         ## Model Trainer Artifact
-        model_trainer_artifac=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
+        model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
                              train_metric_artifact=classification_train_metric,
                              test_metric_artifact=classification_test_metric
                              )
-        logging.info(f"Model trainer artifact: {model_trainer_artifac}")
-        return model_trainer_artifac
+        logging.info(f"Model trainer artifact: {model_trainer_artifact}")
+        return model_trainer_artifact
     
     
 
