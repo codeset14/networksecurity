@@ -13,6 +13,8 @@ def get_classification_score(y_true,y_pred)->ClassificationMetricArtifact:
         classification_metric =  ClassificationMetricArtifact(f1_score=float(model_f1_score),
                     precision_score=float(model_precision_score), 
                     recall_score=float(model_recall_score)
-        return classification_metric)
+        )
+
+        return classification_metric
     except Exception as e:
         raise NetworkSecurityException(e,sys)
