@@ -7,7 +7,7 @@ from networksecurity.logging.logger import logging
 from networksecurity.entity.artifact_entity import DataTransformationArtifact,ModelTrainerArtifact
 from networksecurity.entity.config_entity import ModelTrainerConfig
 
-
+ 
 
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 from networksecurity.utils.main_utils.utils import save_object,load_object
@@ -24,7 +24,7 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-from urllib.parse import urlparse 
+from urllib.parse import urlparse
 
 import dagshub
 dagshub.init(repo_owner='codeset14', repo_name='networksecurity', mlflow=True)
@@ -35,7 +35,6 @@ dagshub.init(repo_owner='codeset14', repo_name='networksecurity', mlflow=True)
 
 
 
- 
 class ModelTrainer:
     def __init__(self,model_trainer_config:ModelTrainerConfig,data_transformation_artifact:DataTransformationArtifact):
         try:
@@ -45,7 +44,7 @@ class ModelTrainer:
             raise NetworkSecurityException(e,sys)
         
     def track_mlflow(self,best_model,classificationmetric):
-        mlflow.set_registry_uri("https://dagshub.com/codeset14/networksecurity.mlflow/")
+        mlflow.set_registry_uri("https://dagshub.com/codeset14/networksecurity.mlflow")
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         with mlflow.start_run():
             f1_score=classificationmetric.f1_score
@@ -149,11 +148,17 @@ class ModelTrainer:
                              )
         logging.info(f"Model trainer artifact: {model_trainer_artifact}")
         return model_trainer_artifact
+    
+    
 
 
         
-    
 
+
+       
+    
+    
+        
     def initiate_model_trainer(self)->ModelTrainerArtifact:
         try:
             train_file_path = self.data_transformation_artifact.transformed_train_file_path
