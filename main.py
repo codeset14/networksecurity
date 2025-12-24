@@ -36,6 +36,7 @@ if __name__=='__main__':
 
         logging.info("Model Training sstared")
         model_trainer_config=ModelTrainerConfig(trainingpipelineconfig)
+        logging.info("Model Training config complete")
         model_trainer=ModelTrainer(model_trainer_config=model_trainer_config,data_transformation_artifact=data_transformation_artifact)
         model_trainer_artifact=model_trainer.initiate_model_trainer()
 
