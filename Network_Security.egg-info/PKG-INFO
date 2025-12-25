@@ -3,14 +3,22 @@ Name: Network-Security
 Version: 0.0.1
 Author: Viraj Sawant
 Author-email: sawant1418@gmail.com
-Requires-Dist: python.dotenv
+Requires-Dist: python-dotenv
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: python-dotenv
 Requires-Dist: pandas
 Requires-Dist: numpy
 Requires-Dist: pymongo
 Requires-Dist: certifi
+Requires-Dist: pymongo[srv]
 Requires-Dist: scikit-learn
-Requires-Dist: dill
-Requires-Dist: pymal
+Requires-Dist: mlflow
+Requires-Dist: pyaml
+Requires-Dist: dagshub
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: python-multipart
 Dynamic: author
 Dynamic: author-email
 Dynamic: requires-dist
