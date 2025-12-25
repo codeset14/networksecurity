@@ -1,0 +1,6 @@
+[ 2025-12-25 14:44:39,188 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-12-25 14:44:39,196 ] 107 dagshub - INFO - Accessing as codeset14
+[ 2025-12-25 14:44:40,019 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/codeset14/networksecurity "HTTP/1.1 200 OK"
+[ 2025-12-25 14:44:40,816 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-12-25 14:44:40,820 ] 107 dagshub - INFO - Initialized MLflow to track repo "codeset14/networksecurity"
+[ 2025-12-25 14:44:40,822 ] 107 dagshub - INFO - Repository codeset14/networksecurity initialized!
