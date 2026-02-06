@@ -1,3 +1,6 @@
 cyber
 .env
 
+Artifacts/
+final_model/
+logs/
